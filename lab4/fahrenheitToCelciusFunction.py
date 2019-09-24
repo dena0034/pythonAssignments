@@ -2,8 +2,8 @@
 
 import dena0034Library
 
-dF = float(input("What is the tempeture in Fahrenheit?: "))
+dF = float(input("What is the temperature in Fahrenheit?: "))
 
-dC = dena0034Library.fahrenCelcius(dF)
+dC = dena0034Library.fahrenCelsius(dF)
 
-print("{} degrees Fahrenheit is {} degress Celcius".format(dF, dC))
+print("{} degrees Fahrenheit is {} degrees Celsius".format(dF, dC))

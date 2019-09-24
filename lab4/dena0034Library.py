@@ -8,12 +8,12 @@ def carMPG(miles, gallons): # this function calculates the MPG, miles and gallon
     mpg = miles / gallons
     return mpg
 
+# convert fahrenheit to celsius, input degree in fahrenheit (degreeFah) output: degree celsius
+def fahrenCelsius(degreeFah):
+    degreeCelsius = ((degreeFah - 32) * 5/9)
+    return degreeCelsius
 
-def fahrenCelcius(degreeFah):
-    degreeCelcius = ((degreeFah - 32) * 5/9)
-    return degreeCelcius
-
-
+#calculate the distance between two points, it receives the cordenate points and return the distance
 def calculateDistanceBetweenPoints(coordx, coordy, coordx1, coordy1):
     a = (coordx1 - coordx)**2
     b = (coordy1-coordy)**2
