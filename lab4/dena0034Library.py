@@ -1,4 +1,5 @@
 import math
+import gfxhat
 def areaCircle(radius): # This function calculates the area of a circle, it has radius as a paramnter*/
     area = (radius ** 2) * math.pi
     return area
@@ -20,3 +21,9 @@ def calculateDistanceBetweenPoints(coordx, coordy, coordx1, coordy1):
     distance = math.sqrt(a + b)
     return distance
 
+def verticalLine(y,x):
+    i = 0
+    while(i < 64):
+        lcd.set_pixel(x, i, 1)
+        i = i+1
+    lcd.show()
