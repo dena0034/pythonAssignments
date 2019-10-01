@@ -13,7 +13,7 @@ def fahrenCelsius(degreeFah):
     degreeCelsius = ((degreeFah - 32) * 5/9)
     return degreeCelsius
 
-#calculate the distance between two points, it receives the cordenate points and return the distance
+# calculate the distance between two points, it receives the cordenate points and return the distance
 def calculateDistanceBetweenPoints(coordx, coordy, coordx1, coordy1):
     a = (coordx1 - coordx)**2
     b = (coordy1-coordy)**2
