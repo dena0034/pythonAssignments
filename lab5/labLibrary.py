@@ -68,12 +68,12 @@ def stairCase(xPoint, yPoint, width, height, rightLeft, upDown):
    
 def randomPixel(num):
     
-    time = sleep(num)
     count = 0
-    while count <=  time:
+    while count <=  num:
         x = randint(0, 128)
         y = randint(0, 64)
         lcd.set_pixel(x, y, 1)
         lcd.show()
         count += 1
+    sleep(2) 
         
