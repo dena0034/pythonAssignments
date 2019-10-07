@@ -61,6 +61,7 @@ def mainMenu():
     elif option == "7":
         lcd.clear()
         lcd.show()
+        labLibrary.clearBacklight()
         sys.exit
     else:
         print("Please choose a valid option!") 
