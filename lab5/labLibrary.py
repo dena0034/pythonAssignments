@@ -1,6 +1,6 @@
 
 from gfxhat import lcd,backlight
-from time import sleep
+from time import sleep, clock, time, ctime
 from random import randint
 
 
@@ -68,12 +68,14 @@ def stairCase(xPoint, yPoint, width, height, rightLeft, upDown):
    
 def randomPixel(num):
     
-    count = 0
-    while count <=  num:
-        x = randint(0, 128)
-        y = randint(0, 64)
+    timeStart = time()
+    timeMax = timeStart + num
+    timeCurrent = time()
+    while timeCurrent < timeMax:
+        x = randint(0, 127)
+        y = randint(0, 63)
         lcd.set_pixel(x, y, 1)
         lcd.show()
-        count += 1
-    sleep(2) 
+        timeCurrent = time()
+    #sleep(2) 
         

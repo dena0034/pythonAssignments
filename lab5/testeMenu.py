@@ -1,6 +1,9 @@
 from gfxhat import lcd, backlight
 import labLibrary
 import sys
+from time import sleep, clock,time, ctime
+from random import randint
+
 
 def mainMenu():
     print( )
@@ -22,7 +25,7 @@ def mainMenu():
     elif option == "2":
         lcd.clear()
         lcd.show()
-        widthX = int(input("Input the X coordinate: "))
+        widthX = int(input("Input the X coordinate : "))
         print(widthX)
         labLibrary.verticalLine(widthX)   
         mainMenu()
