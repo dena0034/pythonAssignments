@@ -22,7 +22,7 @@ def horizontalLine(y):
     lcd.clear()
     lcd.show()
     i = 0
-    while(i < 64):
+    while(i < 128):
         lcd.set_pixel(i, y, 1)
         i = i+1
     lcd.show()
