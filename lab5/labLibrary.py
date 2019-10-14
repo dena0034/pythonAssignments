@@ -38,32 +38,32 @@ def stairCase(xPoint, yPoint, width, height, rightLeft, upDown):
 
     while xPoint < 128 and xPoint >= 0 and yPoint < 64 and yPoint >= 0:
         w = 1
-    h = 1
-    while(w < width):
-        lcd.set_pixel(xPoint, yPoint, 1)
-        if(rightLeft == 1):
-            xPoint = xPoint - 1
-        elif(rightLeft ==2):
-            xPoint = xPoint + 1
-    
-        if xPoint > 127 and xPoint < 0 and yPoint > 63 and yPoint < 0:
-            lcd.show()
-            break
-        w = w +1
-   
-    while(h < height):
-        lcd.set_pixel(xPoint, yPoint, 1)
-        if(upDown == 1):
-            yPoint = yPoint - 1
-        elif(upDown == 2):
-            yPoint = yPoint + 1
-    
-        if xPoint > 127 and xPoint < 0 and yPoint > 63 and yPoint < 0:
-            lcd.show()
-            break
-        h = h +1
+        h = 1
+        while(w < width):
+            lcd.set_pixel(xPoint, yPoint, 1)
+            if(rightLeft == 1):
+                xPoint = xPoint - 1
+            elif(rightLeft ==2):
+                xPoint = xPoint + 1
 
-    lcd.show()
+            if xPoint > 127 and xPoint < 0 and yPoint > 63 and yPoint < 0:
+                lcd.show()
+                break
+            w = w +1
+
+        while(h < height):
+            lcd.set_pixel(xPoint, yPoint, 1)
+            if(upDown == 1):
+                yPoint = yPoint - 1
+            elif(upDown == 2):
+                yPoint = yPoint + 1
+
+            if xPoint > 127 and xPoint < 0 and yPoint > 63 and yPoint < 0:
+                lcd.show()
+                break
+            h = h +1
+
+        lcd.show()
    
    
 def randomPixel(num):

@@ -1,7 +1,12 @@
-from gfxhat import lcd,  fonts
+from gfxhat import lcd,  fonts, backlight
 from PIL import Image, ImageFont, ImageDraw
 from click import getchar
 
+
+
+def clearBacklight():
+    backlight.set_all(0,0,0)
+    backlight.show()
 
 def clearScreen(lcd):
     lcd.clear()
@@ -30,6 +35,9 @@ def displayText(text,lcd,x,y):
 # '\x1b[B' DOWN arrow key
 # '\x1b[C' RIGHT arrow key
 # '\x1b[D' LEFT arro key
+def setLight(r,g,b):
+    backlight.set_all(r, g, b)
+    backlight.show()
 
 
 def etchSketch(x,y):
@@ -75,3 +83,23 @@ def etchSketch(x,y):
             print("Press a valid option")
 
 
+def displayObject(obj, x, y):
+    lcd.clear()
+    xp = x
+    for y1 in obj:
+        #print(y1)
+        for x2 in y1:
+            lenY = len(obj)
+            lenX = len(y1)
+            #print(x2)
+            #xp = x
+            if x2 == 1:
+                pixel = 1
+            else:
+                pixel = 0
+            lcd.set_pixel(xp, y, pixel)
+            xp = xp + 1
+        y = y + 1
+        lcd.set_pixel(xp, y, pixel)
+        xp = x
+    lcd.show()
