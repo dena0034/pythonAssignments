@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="10.12.0.246">
+  <component name="PublishConfigData" autoUpload="Always">
     <serverData>
+      <paths name="10.12.0.143">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/pi/Documents/8279/pythonAssignments/lab7" local="$PROJECT_DIR$/lab7" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="10.12.0.246">
         <serverdata>
           <mappings>
@@ -19,7 +26,7 @@
       <paths name="192.168.43.87">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/Documents/8279/pythonAssignments/lab6" local="$PROJECT_DIR$/lab6" web="/" />
+            <mapping deploy="/home/pi/Documents/8279/pythonAssignments/lab7" local="$PROJECT_DIR$/lab7" web="/" />
           </mappings>
         </serverdata>
       </paths>
