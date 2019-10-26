@@ -21,20 +21,19 @@ y = 20
 vx = 4
 vy = 4
 while True:
-    #lab7Library.displayObject(ball, x, y)
+
     newPoints = lab7Library.checkCollision(ball, x, y, vx, vy)
     #print(x, y)
     #print(vx,vy)
-    vx = newPoints[0]
-    vy = newPoints[1]
-    print("depois")
-    print(vx, vy)
+    vx = newPoints[0] # recieve the vx updated
+    vy = newPoints[1] # recieve the vy updated
+    #print(vx, vy)
     position = lab7Library.moveObject(ball, x, y, vx, vy)
-    x = position[0]
-    y = position[1]
+    x = position[0] # recieve x new position
+    y = position[1] # recieve y new position
     #print(x, y)
     lab7Library.displayObject(ball, x, y)
     lcd.show()
-    sleep(.40)
+    sleep(.20)
     #print(x, y)
-    # print(x1, y1)ç
+    # print(x1, y1)

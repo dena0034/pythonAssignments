@@ -25,7 +25,7 @@ def displayObject(obj, x, y):
     lcd.show()
     return x, y
 
-def eraseObject(obj, x, y):
+def eraseObject(obj,x=0,y=0):
     xp = x
     for y1 in obj:
         # print(y1)
@@ -41,26 +41,24 @@ def eraseObject(obj, x, y):
         xp = x
     lcd.show()
 
-def moveObject(obj, x, y, vx, vy):
+def moveObject(obj,x=0,y=0,vx=0,vy=0):
     eraseObject(obj, x, y)
     x = x + vx
     y = y + vy
     return [x, y]
 
 
-def checkCollision(obj, x, y, vx, vy, Sx = 127, Sy = 63):
+def checkCollision(obj, x=0, y=0, vx=0, vy=0, Sx=127, Sy=63):
     lenthX = len(obj[0])
     lenthY = len(obj)
     totalX = lenthX + x + vx
     totalY = lenthY + y + vy
-    if y <= 0 or totalY >= Sy: # verify if y reached the left wall
-        print("entrou no print 1")
-        print(totalX, totalY)
+    if y <= 0 or totalY > Sy: # verify if y reached the left or right wall
+        #print(totalX, totalY)
         vy = -vy
-
-    if x <= 0 or totalX >= Sx:
-        print("entrou no print 2")
-        print(totalX, totalY)
+        y = y + vy
+    if x <= 0 or totalX > Sx: #verify of the x reached the left or right wall
+        #print(totalX, totalY)
         vx = -vx
-
-    return [vx, vy]
+        x = x + vx
+    return [vx, vy, x, y]
