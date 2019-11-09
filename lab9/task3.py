@@ -3,8 +3,19 @@
 # and the value is the 8*8 bit list representation of the character.
 # Write a program that reads a character from the user and displays the associate character on the gfxHat at the coordinates of your choice.
 # Characters not present in the dictionary are ignored and a message is displayed on the computer screen.
+from gfxhat import lcd, fonts, backlight
 
-def genetateDictionary():
+
+def setLight(r, g, b):
+    backlight.set_all(r, g, b)
+    backlight.show()
+
+
+setLight(200, 100, 90)
+
+
+# create dictionary from file
+def generateDictionary():
     fileRead = open("font3.txt", "r")
     fileDict = {}
     for line in fileRead:
@@ -14,35 +25,72 @@ def genetateDictionary():
     return fileDict
 
 
-def displayCharacter(character, dictionary):
-    keys = dictionary.keys()
-    #print(keys)
-    try:
-        print(dictionary.get(character))
-        value = dictionary.get(character)
+# get the users input, search the character in the dictionary passed
+# break the value  each two character and save in a list of str
+# and return the hexadecimal value in a list, without the '0x'
+def getValueInList(character, dictionary):
 
-        n = 2
-        valueTwo = [(value[i:i + n]) for i in range(0, len(value), n)]
-
-        print(valueTwo[2:])
-        print(type(valueTwo))
-        hex = 16
-        for x in range(2, len(valueTwo)):
-            line = valueTwo[x]
-            #print(line)
-            #print(type(line))
-            listBinary = bin(int(line, hex))
-            print(type(listBinary))
-                #.zfill(8)
-            print(listBinary)
-        #print(dictionary.values() + " here")
-        #print(line[2:-4])
-    except:
-        print("Key not in the dictionary")
+    value = dictionary.get(character)
+    n = 2
+    valueTwo = []
+    for i in range(2, len(value), n):
+        valueTwo.append(value[i:i + n])
+    return valueTwo
 
 
 
-character = str(input(("Please, type a character: ")))
-#character = "A"
-dictionary = genetateDictionary()
-displayCharacter(character, dictionary)
+
+# receive the list value in hexadecimal, go through the list and convert to binary str
+# add zeros to the left to complete eight bits, transform each str into a list and append to a bigger list 8x8
+def listStrToBinary(valueList):
+    listBinary = []
+    for x in range(0, len(valueList)):
+        line = valueList[x]
+        strBinary = bin(int(line, 16))
+        strBinary = strBinary[2:].zfill(8)
+        listBinary.append(list(strBinary))
+    return listBinary
+
+
+# cast the list of str to a list of int, return the new int list
+def castListStrToInt(listBinary):
+    for i in range(len(listBinary)):
+        for j in range(len(listBinary[i])):
+            listBinary[i][j] = int(listBinary[i][j])
+
+    # print(listBinary)
+    return listBinary
+
+
+# display the obj into the gfxhat
+def displayObject(obj, x, y):
+    lcd.clear()
+    xp = x
+    for y1 in obj:
+        # print(y1)
+        for x2 in y1:
+            lenY = len(obj)
+            lenX = len(y1)
+            # print(x2)
+            # xp = x
+            if x2 == 1:
+                pixel = 1
+            else:
+                pixel = 0
+            lcd.set_pixel(xp, y, pixel)
+            xp = xp + 1
+        y = y + 1
+        lcd.set_pixel(xp, y, pixel)
+        xp = x
+    lcd.show()
+
+
+characterUser = str(input("Please, type a character: "))
+try:
+    dictionary = generateDictionary()
+    obj = getValueInList(characterUser, dictionary)
+    list = listStrToBinary(obj)
+    listBinary2 = castListStrToInt(list)
+    displayObject(listBinary2, 40, 30)
+except:
+        print("Character not present in the dictionary")
