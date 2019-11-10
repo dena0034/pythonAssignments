@@ -38,9 +38,11 @@ def transformTxtCvs(fileName, fileCSV):
 
 def openCSV(file):
     fileOpen = open(file, "r+")
+    newList = []
     for line in fileOpen:
         lineList = line.splitlines()
-        print(lineList)
+        newList.append(lineList)
+    print(newList)
     fileOpen.close()
 # Task 2:
 # Write a python program that prompts the user for the name of .csv file then reads and displays each line of the file as a Python list.

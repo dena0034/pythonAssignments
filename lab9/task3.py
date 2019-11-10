@@ -16,13 +16,16 @@ setLight(200, 100, 90)
 
 # create dictionary from file
 def generateDictionary():
-    fileRead = open("font3.txt", "r")
-    fileDict = {}
-    for line in fileRead:
-        value, key = line.strip().split(',')
-        fileDict[key.strip()] = value.strip()
-    fileRead.close()
-    return fileDict
+    try:
+        fileRead = open("font3.txt", "r")
+        fileDict = {}
+        for line in fileRead:
+            value, key = line.strip().split(',')
+            fileDict[key.strip()] = value.strip()
+        fileRead.close()
+        return fileDict
+    except:
+        print("File not found")
 
 
 # get the users input, search the character in the dictionary passed
@@ -36,8 +39,6 @@ def getValueInList(character, dictionary):
     for i in range(2, len(value), n):
         valueTwo.append(value[i:i + n])
     return valueTwo
-
-
 
 
 # receive the list value in hexadecimal, go through the list and convert to binary str
@@ -86,6 +87,7 @@ def displayObject(obj, x, y):
 
 
 characterUser = str(input("Please, type a character: "))
+
 try:
     dictionary = generateDictionary()
     obj = getValueInList(characterUser, dictionary)
