@@ -13,8 +13,7 @@ def createConnection(db_file):
 
 
 def getId(id):
-
-    if int(id) < 1 or int(id) > 24:
+    if int(id) < 1 or int(id) > 30:
         print("Please type a valid number!")
         id = input("Please type an id between 1 to 24: ")
     if id == 'q':
@@ -43,18 +42,48 @@ def updateSql(con, cursor, idDb):
         city = r[1]
         country = r[2]
         student = r[3]
-        if city is None:
+        print("Type 1 to update the city, 2 the country, 3 student's name or 4 to update all the data: ")
+        update = input()
+        if int(update) == 1:
             city = input("Name of the city: ")
-        if country is None:
+            updateCity = "update lab10 set city = ? where id = ? "
+            dataCity = (city, idDb)
+            cursor.execute(updateCity, dataCity)
+            con.commit()
+            cursor.close()
+            mainMenu()
+        elif int(update) == 2:
             country = input("Name of the country: ")
-        if student is None:
-            fName = input("Student's name: ")
-        updateQueyy = ("update lab10 set city = ?, country = ?, student =? where id = ? ")
-        data = (city, country, fName, idDb)
-        cursor.execute(updateQueyy, data)
-        con.commit()
-        print("The data was updated")
-    cursor.close()
+            updateCountry = "update lab10 set  country = ? where id = ? "
+            dataCountry = (country, idDb)
+            cursor.execute(updateCountry, dataCountry)
+            con.commit()
+            cursor.close()
+            mainMenu()
+        elif int(update) == 3:
+            student = input("Student's name: ")
+            updateStudent = "update lab10 set  student = ? where id = ? "
+            dataStudent = (student, idDb)
+            cursor.execute(updateStudent, dataStudent)
+            con.commit()
+            cursor.close()
+            mainMenu()
+        elif int(update) == 4:
+            city = input("Name of the city: ")
+            country = input("Name of the country: ")
+            student = input("Student's name: ")
+            updateQuery = "update lab10 set city = ?, country = ?, student =? where id = ? "
+            data = (city, country, student, idDb)
+            cursor.execute(updateQuery, data)
+            con.commit()
+            cursor.close()
+            print("The data was updated")
+            mainMenu()
+        else:
+            print("Enter a valid option!")
+            update = input()
+
+
 
 
 def showData(cursor):
@@ -69,18 +98,18 @@ def mainMenu():
     createConnection(db_file)
     con, cursor = createConnection(db_file)
     print("Choose: \n 1 to show the data from the BD \n 2 to update one data \n Press 3 to exit")
-    choice = int(input())
-    if choice == 1:
+    choice = input()
+    if int(choice) == 1:
         showData(cursor)
         mainMenu()
-    elif choice == 2:
-        id = input("Please type an id between 1 to 24: ")
+    elif int(choice) == 2:
+        id = input("Please type an id between 1 to 27: ")
         getId(id)
         indexDb = getId(id)
         idDb = getLink(cursor, indexDb)
-        updateSql(con, cursor,idDb)
+        updateSql(con, cursor, idDb)
         mainMenu()
-    elif choice == 3:
+    elif int(choice) == 3:
         exit()
     else:
         print("Please, select a valid option")
