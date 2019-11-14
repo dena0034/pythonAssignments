@@ -9,15 +9,15 @@ def createConnection(db_file):
         cursor = con.cursor()
     except:
         print("Database not found")
+        exit()
     return con, cursor
 
 
-def getId(id):
+def getId():
+    id = input("Please type an id between 1 to 43: ")
     if int(id) < 1 or int(id) > 43:
         print("Please type a valid number!")
         id = input("Please type an id between 1 to 43: ")
-    if id == 'q':
-        exit()
     else:
         return id
 
@@ -42,9 +42,11 @@ def updateSql(con, cursor, idDb):
         city = r[1]
         country = r[2]
         student = r[3]
-        print("Type 1 to update the city, 2 the country, 3 student's name or 4 to update all the data: ")
+        print("Type 1 to update the city, 2 the country, 3 student's name, 4 to update all the data or q to exit: ")
         update = input()
-        if int(update) == 1:
+        if update == 'q' or update == 'Q':
+            exit()
+        elif int(update) == 1:
             city = input("Name of the city: ")
             updateCity = "update lab10 set city = ? where id = ? "
             dataCity = (city, idDb)
@@ -97,20 +99,22 @@ def mainMenu():
     db_file = 'week10.db'
     createConnection(db_file)
     con, cursor = createConnection(db_file)
-    print("Choose: \n 1 to show the data from the BD \n 2 to update one data \n Press 3 to exit")
+    print("Choose: \n 1 to show the data from the BD \n 2 to update one data \n 3 to open a link \n Press q to exit")
     choice = input()
-    if int(choice) == 1:
+    if str(choice) == 'q' or str(choice) == 'Q':
+        exit()
+    elif int(choice) == 1:
         showData(cursor)
         mainMenu()
     elif int(choice) == 2:
-        id = input("Please type an id between 1 to 32: ")
-        getId(id)
-        indexDb = getId(id)
+        indexDb = getId()
         idDb = getLink(cursor, indexDb)
         updateSql(con, cursor, idDb)
         mainMenu()
     elif int(choice) == 3:
-        exit()
+        indexDb = getId()
+        getLink(cursor, indexDb)
+        mainMenu()
     else:
         print("Please, select a valid option")
         mainMenu()
