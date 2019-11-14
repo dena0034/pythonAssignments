@@ -13,7 +13,7 @@ def createConnection(db_file):
 
 
 def getId(id):
-    if int(id) < 1 or int(id) > 30:
+    if int(id) < 1 or int(id) > 32:
         print("Please type a valid number!")
         id = input("Please type an id between 1 to 24: ")
     if id == 'q':
@@ -103,7 +103,7 @@ def mainMenu():
         showData(cursor)
         mainMenu()
     elif int(choice) == 2:
-        id = input("Please type an id between 1 to 27: ")
+        id = input("Please type an id between 1 to 32: ")
         getId(id)
         indexDb = getId(id)
         idDb = getLink(cursor, indexDb)
