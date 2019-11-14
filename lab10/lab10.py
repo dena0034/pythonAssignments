@@ -13,9 +13,9 @@ def createConnection(db_file):
 
 
 def getId(id):
-    if int(id) < 1 or int(id) > 32:
+    if int(id) < 1 or int(id) > 43:
         print("Please type a valid number!")
-        id = input("Please type an id between 1 to 24: ")
+        id = input("Please type an id between 1 to 43: ")
     if id == 'q':
         exit()
     else:
