@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- pairs is a list that must be sent here by a route function
+
+     The list will contain 45 pairs: a presidency number, and a
+     president's name -->
+
+     <!--       later editing change         -->
+     <!--  url_for( 'detail', num=pair[0] )  -->
+     <!--    inside double curly braces      -->
+
+
+    <ul>
+        <li><a href="{{ url_for( 'menu') }}">Find student page</a></li>
+        <li><a href="{{ url_for( 'displayAll') }}">Display all students page</a></li>
+
+    </ul>
+
+{% endblock %}

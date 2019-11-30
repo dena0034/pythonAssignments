@@ -94,7 +94,6 @@ def showData(cursor):
     for r in result.fetchall():
         print(r)
 
-
 def mainMenu():
     db_file = 'week10.db'
     createConnection(db_file)

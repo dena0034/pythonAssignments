@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- pairs is a list that must be sent here by a route function
+
+     The list will contain 45 pairs: a presidency number, and a
+     president's name -->
+
+     <!--       later editing change         -->
+     <!--  url_for( 'detail', num=pair[0] )  -->
+     <!--    inside double curly braces      -->
+
+<div id="table-container">
+    <table id="example" class="display table table-hover px-5">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                   <td scope="row"><a href="{{row[1]  }}" target="_blank"> {{row[4]}}</a> </td>
+    {#                <td> {{row[4]}}</td>#}
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+
+
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
